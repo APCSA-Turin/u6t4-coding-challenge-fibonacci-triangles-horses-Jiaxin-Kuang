@@ -66,6 +66,6 @@ public class Fibonacci {
    *  USE THE ARRAYPRINTER UTILITY CLASS IN YOUR SOLUTION TO THIS METHOD
    */
   public String fibonacciString() {
-    return Arrays.toString(sequence);
+    return ArrayPrinter.printableString(sequence);
   }
 }
