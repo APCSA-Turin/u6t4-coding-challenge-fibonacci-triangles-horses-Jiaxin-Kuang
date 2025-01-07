@@ -1,4 +1,5 @@
 package com.example.project;
+import java.util.Arrays;
 
 public class TriangleCollection {
 
@@ -28,20 +29,36 @@ public class TriangleCollection {
   
     // PRECONDITION: numTriangles >= 2
     public TriangleCollection(int numTriangles, int startX, int startY) {
-      /* IMPLEMENT ME */
+      int copyX = startX;
+      collection = new Triangle[numTriangles];
+      for(int i = 0; i < numTriangles; i ++){
+        collection[i] = new Triangle(new Point(-1 * startX, 0), new Point(0, startY), new Point(copyX, 0));
+        copyX --;
+      }
     }
   
     // Calculate and return the sum of the perimeters of
     // all Triangles in the collection
     public double totalPerimeter() {
-      /* IMPLEMENT ME */
+      double combinedPerimeter = 0;
+      for(int i = 0; i < collection.length; i ++){
+        combinedPerimeter += collection[i].perimeter();
+      }
+      return combinedPerimeter;
     }
   
     // adds increment to both the x and y coordinates of each of the
     // three Points in every Triangle in the collections array
     // ADD GETTER AND SETTER METHODS TO OTHER CLASSES AS NECESSARY
     public void shiftTriangles(int increment) {
-      /* IMPLEMENT ME */
+      for(int i = 0; i < collection.length; i ++){
+        collection[i].getVertices()[0].incrementX(increment);
+        collection[i].getVertices()[0].incrementY(increment);
+        collection[i].getVertices()[1].incrementX(increment);
+        collection[i].getVertices()[1].incrementY(increment);      
+        collection[i].getVertices()[2].incrementX(increment);
+        collection[i].getVertices()[2].incrementY(increment);
+      }
     }
   
     // returns a String that contains each Triangle in the 
@@ -53,8 +70,11 @@ public class TriangleCollection {
     //  [(1, 5), (5, 12), (8, 5)]
     //  [(1, 5), (5, 12), (7, 5)]"
     public String triangleCollectionInfo() {
-      /* IMPLEMENT ME */
+      String allVertices = "";
+      for(int i = 0; i < collection.length; i ++){
+        allVertices += collection[i].triangleInfo();
+        allVertices += "\n";
+      }
+      return allVertices;
     }
   }
-  
-  
